@@ -1,0 +1,10 @@
+g++ bloonscv6.cpp -o bloonscv6 `pkg-config --cflags --libs opencv4`
+
+
+
+
+
+
+
+// VideoCapture cap(0);
+    VideoCapture cap("/dev/video2");
