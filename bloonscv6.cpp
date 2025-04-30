@@ -110,11 +110,11 @@ void carregarSons(){
     if (!popBuffer.loadFromFile("sons/pop.mp3")) {
         cerr << "Erro ao carregar pop.mp3\n";
     }
-    if (!gameOverBuffer.loadFromFile("sons/gameover.wav")) {
-        cerr << "Erro ao carregar gameover.wav\n";
+    if (!gameOverBuffer.loadFromFile("sons/gameover.mp3")) {
+        cerr << "Erro ao carregar gameover.mp3\n";
     }
-    if (!roundStartBuffer.loadFromFile("sons/round_start.wav")) {
-        cerr << "Erro ao carregar round_start.wav\n";
+    if (!roundStartBuffer.loadFromFile("sons/round_start.mp3")) {
+        cerr << "Erro ao carregar round_start.mp3\n";
     }
 
     popSound.setBuffer(popBuffer);
@@ -500,7 +500,6 @@ vector<pair<string, int>> getTopScores() {
 
     return scores;
 }
-
 
 void overlayImage(const Mat& background, const Mat& foreground, Mat& output, Point2f location) {
     background.copyTo(output);
