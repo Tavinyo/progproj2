@@ -1,0 +1,2 @@
+// VideoCapture cap(0);
+VideoCapture cap("/dev/video2");
