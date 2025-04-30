@@ -205,6 +205,8 @@ public:
             cerr << "Erro ao abrir a câmera." << endl;
             return false;
         }
+        capture.set(CAP_PROP_FRAME_WIDTH, 320); // Tenta definir largura para 320 
+        capture.set(CAP_PROP_FRAME_HEIGHT, 240); // Tenta definir altura para 240
         return true;
     }
 
@@ -546,7 +548,22 @@ void MenuState::showTopScores() {
 void PlayState::handleInput() {
     char key = static_cast<char>(waitKey(30));
     if (key == 27 || key == 'q' || key == 'Q') {
-        game->changeState(new GameOverState(game));
+        // Perguntar se deseja salvar a pontuação
+        Mat prompt = Mat::zeros(200, 640, CV_8UC3);
+        putText(prompt, "Deseja salvar sua pontuacao? (S/N)", Point(30, 100), FONT_HERSHEY_SIMPLEX, 0.8, Scalar(255, 255, 255), 2);
+        imshow("BloonsCV6", prompt);
+
+        // Espera por S ou N
+        while (true) {
+            char response = (char)waitKey(0);
+            if (response == 's' || response == 'S') {
+                game->changeState(new GameOverState(game));
+                break;
+            } else if (response == 'n' || response == 'N') {
+                game->changeState(new MenuState(game));
+                break;
+            }
+        }
     }
     if (key == 'i' || key == 'I') {
         faceDetector->toggleCameraFlip();
